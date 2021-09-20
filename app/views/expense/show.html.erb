@@ -1,0 +1,14 @@
+<h2> <%= @expense.title %></h2>
+<p> <%= @expense.body %> </p>
+<p> <%= @expense.date %> </p>
+
+<%= link_to "Edit", edit_expense_path(@expense), :class => 'btn btn-primary' %>
+<%= link_to "Delete", expense_path(@expense), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger' %>
+
+
+
+
+
+
+
+
