@@ -1,0 +1,13 @@
+
+<h2>EXPENSES</h2> <br>
+<% @expenses.each do |expense| %>
+
+    <div class="view">
+    <h5> <%= expense.title %> </h5>
+    <h6> <%= expense.body %> </h6>
+    <h6> <%= expense.date %> </h6>
+
+    <%= link_to "View more", expense_path(expense), :class => 'btn btn-secondary' %>
+    </div><br>
+
+    <% end %>
