@@ -1,4 +1,7 @@
 class ExpensesController < ApplicationController
+    before_action :set_expense, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:index, :show]
+    before_action :correct_user, only: [:edit, :update, :destroy]
     
     def index 
         @expenses = Expense.all
@@ -9,13 +12,13 @@ class ExpensesController < ApplicationController
     end
 
     def new
-        @expense = Expense.new
-    end
+        #@expense = Expense.new
+        @expense = current_user.expenses.build
+     end
 
     def create
-        #render plain: params[:expense].inspect
-        @expense = Expense.new(expense_params)
-
+        #@expense = Expense.new(expense_params)
+        @expense = current_user.expenses.build(expense_params)
         if(@expense.save)
             redirect_to @expense
         else 
@@ -40,12 +43,22 @@ class ExpensesController < ApplicationController
     def destroy
         @expense = Expense.find(params[:id])
         @expense.destroy
-        redirect_to expenses_path
+        redirect_to expenses_path, notice: "Entry deleted.....!"
+    end
+
+    def correct_user
+        @expense = current_user.expenses.find_by(id: params[:id])
+        redirect_to expenses_path, notice: "Not authorized to Edit this" if @expense.nil?
+    end
+    
+    private
+        def set_expense
+        @expense = Expense.find(params[:id])
     end
 
     private 
     def expense_params
-            params.require(:expense).permit(:title, :body, :date)
+            params.require(:expense).permit(:title, :body, :date, :user_id)
     end
 
 end

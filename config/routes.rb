@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
  
+  devise_for :users
   root 'expenses#index'
   
   get 'expenses/new'
-  get 'expense/edit'
+  get 'expenses/edit'
  
- resources :expenses
+  resources :expenses
  
  end

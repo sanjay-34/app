@@ -1,9 +1,9 @@
-<h2>HOME</h2>
+<br><h2>HOME</h2>
 
 <%= form_for :expense, url: expenses_path do |f| %>
     <p>
         <%= f.label :Amount %><br>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, :required => true %>
     </p>
     
     <p>
@@ -15,6 +15,11 @@
         <%= f.label :Date %><br>
         <%= f.date_field :date %>
     </p>
+
+    <p> 
+    <%#= f.label :user_id %>
+        <%= f.number_field :user_id, id: :expense_user_id, value:current_user.id, type: :hidden %>
+    </P>
 
     <p>
         <%= f.submit "Save Expense", class: "btn btn-primary" %>
