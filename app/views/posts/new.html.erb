@@ -1,0 +1,28 @@
+<br><h2>Add Post</h2>
+
+<%= form_for :post, url: posts_path do |f| %>
+
+	<p>
+		<%= f.label :title %><br>
+		<%= f.text_field :title, :required => true %>
+	</p>
+
+	<p>
+		<%= f.label :body %><br>
+		<%= f.text_field :body%>
+	</p>
+
+	<p>
+		
+		<%= f.number_field :user_id, id: :post_user_id, value: current_user.id, type: :hidden %>
+	</p>
+
+	
+	<p>
+		<%= f.submit  class: 'btn btn-primary'  %>
+	</p>
+<% end %>
+
+
+
+

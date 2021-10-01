@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<% if user_signed_in? %>
+	<h2><p class="text-success">INDEX</p></h2>
+
+	
+		<% @post.each do |post| %>
+
+			<% if post.user == current_user %>
+				<h4><%= post.title %></h4>
+				<p><h5><%= post.body %></h5></p>
+				<p><%#= post.user_id %></p>
+
+				<%= link_to "view more", post_path(post), :class => "btn btn-info"  %>
+			<% end %>
+
+		<% end %>
+
+	
+	<% else %>
+  		<h1><p class="text-danger"><marquee> Please Login...! </marquee></p></h1>
+<% end %>
+
+

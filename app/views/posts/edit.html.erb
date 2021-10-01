@@ -1,0 +1,20 @@
+<br><h2>Edit Post</h2>
+
+<%= form_for :post, url: post_path(@post), method: :patch  do |f| %>
+
+	<p>
+		<%= f.label :title %><br>
+		<%= f.text_field :title, :required => true %>
+	</p>
+
+	<p>
+		<%= f.label :body %><br>
+		<%= f.text_field :body%>
+	</p>
+	
+	<p>
+		<%= f.submit  class: 'btn btn-primary'  %>
+		<%= link_to "Cancel", posts_path, class: 'btn btn-secondary' %>
+	</p>
+<% end %>
+
